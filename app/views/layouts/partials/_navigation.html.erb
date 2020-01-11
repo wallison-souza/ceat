@@ -1,0 +1,96 @@
+
+<script>
+    function ativar_item(id_menu, id_item) {
+        jQuery('#menu_vertical').find('active').removeClass('active');
+        jQuery('#' + id_menu).addClass('active');
+        jQuery('#' + id_item).addClass('active');
+        jQuery('.' + id_menu).show();
+    }
+
+    jQuery(document).ready(function () {
+        let s = $('#sinaliza_menu');
+        let id_menu = s.attr('id_menu');
+        let id_item = s.attr('id_item');
+        ativar_item(id_menu, id_item);
+    })
+</script>
+
+<style>
+
+  #left-nav-menu {
+    background-color: white;
+    margin-top: 0px;
+    max-height: 80px;
+  }
+
+  #left-nav-menu img {
+    max-height: 100%;
+    width: 70px;
+  }
+
+  #left-nav-menu span {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 90px;
+    margin-left: 10px;
+    font-family: "Roboto", Sans-Serif;
+    letter-spacing: 5px;
+  }
+
+  #left-nav-menu a:hover {
+    text-decoration: none;
+  }
+
+  #logo:hover {
+    text-decoration: none;
+    transform: scale(1.01);
+  }
+</style>
+
+<!--Cabeçalho-->
+  <!--Cabeçalho-->
+  <div class="container-fluid" id="cabecalho_principal">
+    <ul id="left-nav-menu" class="nav navbar-nav navbar-left">
+      <%= link_to '/' do %>
+          <%#= image_tag 'logo-somente-W.png', class: 'logo-header', style: 'margin-top: 0', id: 'logo' %>
+          <span>CEAT</span>
+      <% end %>
+    </ul>
+    <ul id="img-nav-menu" class="background" style="margin: 0;  position:absolute; right: 0">
+      <%= image_tag 'background-header.png', alt: "header-background", style: "padding-left: 5%; max-width: 100%; height: 103px", class:'img-responsive' %>
+    </ul>
+    <div id="right-nav-menu" class="nav nav-bar-nav navbar-right" style="right: 0; position: relative">
+      <div id="user-info" class="menu" style="padding: 10px 40px; text-align: center;">
+        <div align="center" class="container-fluid" style="font-size: 80%; margin-bottom: 1%;color: white;">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <%= @current_user.email %> <br>
+        </div>
+        <div style="display: inline-flex; flex-direction: row">
+          <div class="btn-group">
+            <li class="nav-item dropdown">
+              <button type="button" aria-expanded="false" aria-haspopup="true" class="btn btn-md btn-config dropdown-toggle" data-toggle="dropdown" style="color: #FFFFFF; padding: 2px">
+                <i class="fas fa-cogs" aria-hidden="true"></i> Configurações
+              </button>
+              <ul class="dropdown-menu" style="color: #FFFFFF; padding: 2px" >
+                <li>
+                  <%= link_to edit_usuario_registration_path(@current_user), class: "dropdown-item" do %>
+                    <span class="fas fa-cog" aria-hidden="true"></span> Config Usuário
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to salas_path, class: 'dropdown-item' do %>
+                    <span class="fas fa-cog" aria-hidden="true"></span> Config Salas
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </div>
+          <div style="margin-left: 30px">
+            <%= link_to destroy_usuario_session_path, method: :delete, style: "color: #FFFFFF; padding: 2px", class: "btn btn-md btn-logout" do %>
+              <span class="glyphicon glyphicon-log-out"></span> Sair
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

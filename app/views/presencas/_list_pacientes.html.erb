@@ -1,0 +1,50 @@
+
+
+
+<style>
+  .w-40{
+    width: 40px;
+  }
+</style>
+
+<div id="filterrific_results">
+  <table class="table table-bordered table-striped table-hover" id="tbl_results">
+    <thead>
+    <tr>
+      <th>Numero</th>
+      <th>Nome</th>
+      <th>Nascimento</th>
+      <th>Sala</th>
+      <th style="width: 100px"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <% if pacientes.blank? %>
+      <tr><td colspan="7">Não foram encontrado resultados.</td>
+      </tr>
+    <% end %>
+    <% pacientes.each do |paciente| %>
+      <tr>
+        <td class="id"><%= paciente.id %></td>
+        <td class="name"><%= paciente&.nome %></td>
+        <td>
+          <%= paciente.dt_nasc%>
+        </td>
+        <td class="sala">
+          <%= paciente&.sala&.nome %>
+        </td>
+
+        <td >
+          <button class="btn btn-success check"><i class="fas fa-check"></i></button>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div align="center">
+    <%= page_entries_info pacientes, entry_name: 'resultado(s)' %>
+    <%= paginate pacientes, :params_name => 'paciente_page' %>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1>Salas</h1>
+  </div>
+  <div class="col-md-4" style="text-align: right;padding-top: 28px">
+    <%= link_to new_sala_path,class: "btn btn-success btn-md" do %>
+      <span class="glyphicon glyphicon-plus"></span> Cadastrar Sala
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Nome</th>
+      <th>Prioridade</th>
+      <th>Lista</th>
+      <th width="100px"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @salas.each do |sala| %>
+      <tr>
+        <td><%= sala.tipo %></td>
+        <td><%= sala.nome %></td>
+        <td><%= sala.prioridade ? 'Sim' : 'Não' %></td>
+        <td><%= sala.lista %></td>
+        <td>
+          <%= link_to sala, title: "Visualizar",
+                      class: "btn btn-xs btn-success width-100"  do%>
+            <i class="fas fa-search-plus" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to  edit_sala_path(sala), title:'Editar', class: "btn btn-xs btn-primary" do%>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+          <%= link_to  sala, method: :delete, data: { confirm: 'Você tem certeza??' }, class: "btn btn-xs btn-danger" do%>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -1,0 +1,10 @@
+<h1> Visualizar Dados</h1>
+<fieldset disabled>
+  <%= render 'form', paciente: @paciente %>
+</fieldset>
+<div style="margin-top: 15px">
+  <div class="centered">
+    <%= link_to '<span class="glyphicon glyphicon-edit"></span> Editar'.html_safe, edit_paciente_path(@paciente), class: "btn btn-md btn-primary" %>
+  </div>
+  <%= link_to '<span class="fas fa-arrow-left"></span> Voltar'.html_safe, pacientes_path,class: "btn btn-md "  %>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ceat</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'bootstrap-3.4.1.min' %>
+    <%= stylesheet_link_tag 'fontawesome-5.8.1.min' %>
+    <%= javascript_include_tag 'bootstrap-3.4.1.min' %>
+  </head>
+
+  <body>
+
+    <% if usuario_signed_in? %>
+      <%= render 'layouts/partials/navigation' %>
+      <!--Menu lateral do lado esquerdo-->
+      <%= render "layouts/partials/menu_lateral"  %>
+    <% end %>
+
+
+
+    <div class="container-fluid tela_principal" id="father_box">
+      <%= render 'layouts/partials/messages' %>
+
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

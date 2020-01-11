@@ -1,0 +1,195 @@
+div {
+  &.menu_vertical {
+    margin-top: 2px;
+    background-color: #e8e8e8;
+    width: 230px;
+  }
+  &.menu_vertical_icons {
+    background-color: #e8e8e8;
+    width: 52px;
+  }
+  &.tela_principal {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .menu_vertical, .tela_principal {
+    width: 100vw !important;
+  }
+  #img-nav-menu {
+    display: none;
+  }
+  #right-nav-menu {
+    margin: -5px -15px 1px -15px;
+  }
+}
+
+div.menu_vertical {
+  background-color: #e8e8e8;
+  -webkit-box-shadow: 5px 0 5px -2px #888;
+  box-shadow: 5px 0 5px -2px #888;
+}
+
+button {
+  &.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 0 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-size: 1.1em;
+    min-height: 50px;
+  }
+  &.inner-accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 0 10px;
+    width: 100%;
+    min-height: 42px;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    &.active, &:hover {
+      background-color: #ddd !important;
+      color: black;
+      font-weight: 300;
+    }
+  }
+  &.accordion {
+    &.active {
+      background-color: #3778B2;
+      color: white;
+    }
+    &:hover{
+      background-color: #3c83c2;
+      color: white;
+    }
+  }
+}
+
+.menu-itens {
+  background-color: #eee;
+  display: none;
+  font-size: 75%;
+  border-style: solid;
+  border-color: gray;
+  border-width: 0 0 0 2px;
+}
+
+
+#configuracoes {
+  padding: 25px 20px 25px 0px;
+  float: left;
+  color: white;
+}
+
+#logout {
+  padding: 25px 10px 25px 10px;
+  float: left;
+  color: white;
+}
+
+.background {
+  background-size: 100%;
+  overflow: hidden;
+  position: absolute;
+  z-index: -10;
+}
+
+.logo-header {
+  max-width: 253px;
+  padding: 0.6em 0 0 0;
+}
+
+#edit_setting:hover {
+  background-color: white !important;
+  color: black !important;
+}
+.btn-config:hover, .btn-logout:hover {
+  background-color: #1fa3ff !important;
+}
+
+
+table > tbody > tr > td > a:hover {
+  background-color: transparent;
+  color: #337AB7;
+}
+
+
+#navbar-title {
+  float: left;
+  font-size: 1.1em;
+  color: #fff;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#navbar-title:hover {
+  color: #2E2F30;
+  text-decoration: none;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: lightblue;
+}
+
+.navbar-brand {
+  float: left;
+  padding: 5px 5px !important;
+  font-size: 18px;
+  line-height: 20px;
+  height: 50px;
+}
+.navbar {
+  border-radius: 0px !important;
+}
+
+.nav-tabs > li > a {
+  font-size: 14px;
+  color: #3778b2 !important;
+}
+
+
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.label-ceat {
+  float: left;
+  text-align: left;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+
+.btn-ceat:hover {
+  color: #FFFFFF;
+  border-color: dodgerblue;
+  background-color: dodgerblue;
+}
+
+.btn-ceat {
+  color: #FFFFFF !important;
+  border-color: #42a1f4;
+  background-color: #42a1f4;
+}
+
+
+
+.label-mandatory{
+  color: #B3001B;
+}
+
+// centarliza elemento no meio da página
+.centered {
+  margin-top: 10px;
+  text-align: center;
+
+}

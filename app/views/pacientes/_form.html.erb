@@ -1,0 +1,154 @@
+<%= form_for(paciente) do |f| %>
+  <% if paciente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(paciente.errors.count, "error") %> proibiu que esse paciente fosse salvo:</h2>
+
+      <ul>
+      <% paciente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :nome, 'Nome', class:'label-ceat label-mandatory' %>
+      <%= f.text_field :nome,class:'form-control', required: true %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :sexo, 'Sexo', class:'label-ceat label-mandatory' %>
+      <%= f.select :sexo, Paciente.sexos.keys, {include_blank: ""}, {class:'form-control', required: true }%>
+    </div>
+    <div class="col-md-3">
+      <%= f.label 'Data de Nascimento', class:'label-ceat label-mandatory' %>
+      <%= f.date_field :dt_nasc, {class:'form-control', required: true } %>
+    </div>
+
+
+    <div class="col-md-2">
+      <%= f.label :cep, 'CEP', class:'label-ceat' %>
+      <%= f.text_field :cep, class:'form-control' %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.label 'Bairro', class:'label-ceat' %>
+      <%= f.text_field :bairro, class:'form-control' %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.label :rua, 'Rua', class:'label-ceat' %>
+      <%= f.text_field :rua, class:'form-control' %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.label 'Número', class:'label-ceat' %>
+      <%= f.text_field :numero, class:'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :estado, 'Estado', class:'label-ceat'%>
+      <%= collection_select(:estado, :id, Estado.all,:id, :nome, {:include_blank => 'SELECIONE UM ESTADO'}, {class:'form-control'}) %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :cidade_id, "Cidade", class:'label-ceat' %>
+      <%= f.collection_select(:cidade_id, Cidade.all, :id, :nome, {:include_blank => 'SELECIONE UMA CIDADE'},{class:'form-control', disabled: true}) %>
+    </div>
+
+
+    <div class="col-md-3">
+      <%= f.label :celular, 'Celular', class:'label-ceat'  %>
+      <%= f.text_field :celular, class:'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :telefone, 'Telefone', class:'label-ceat' %>
+      <%= f.text_field :telefone, class:'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :sala_id, 'Sala', class:'label-ceat' %>
+      <%= f.collection_select(:sala_id, Sala.all, :id, :nome, {:include_blank => 'SELECIONE UMA SALA'},{class:'form-control'})%>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :profissao, 'Profissao', class:'label-ceat' %>
+      <%= f.text_field :profissao, class:'form-control' %>
+    </div>
+    <%if params[:action] == 'show'%>
+      <div class="col-md-3">
+        <%= f.label :id, 'Numero', class:'label-ceat' %>
+        <%= f.text_field :id, class:'form-control' %>
+      </div>
+    <%end %>
+  </div>
+  <%unless params[:action] =='show' %>
+    <div class="row centered" >
+      <div class="col-md-12">
+          <%= f.submit paciente.new_record? ? 'Cadastrar Paciente':'Atualizar Paciente', class:'btn btn-success', id:'btn_save'%>
+      </div>
+    </div>
+  <%end %>
+  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title centered" id="exampleModalLabel">Digite a Senha</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row centered ">
+            <div class="col-nd-12 col-lg-offset-3" style="width: 50%">
+              <%= number_field_tag 'senha','',class:'form-control' %>
+              <%= button_tag 'Enviar',type:'button', class:'btn btn-success', onclick:"send()" %>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#estado_id").change(function() {
+            if ($("#estado_id").val() === ""){
+                $("#paciente_cidade_id").prop('disabled', true);
+                $("#paciente_cidade_id option:first").attr('selected','selected');
+            }else{
+                getCitiesByState("id="+$("#estado_id").val());
+            }
+
+        });
+    });
+
+    function getCitiesByState(id) {
+        $.getJSON("/cities_by_state", id, function(j) {
+            var options = '<option value=""> SELECIONE UMA CIDADE </option>';
+            $.each(j.cty, function(i, item) {
+                options += '<option value="' + item.id + '">' + item.n + '</option>';
+            });
+            $("#paciente_cidade_id").html(options).prop('disabled', false);
+        });
+    }
+
+    $('#new_paciente').submit(function (e) {
+        if ($('#senha').val() === undefined || $('#senha').val() === '') e.preventDefault();
+        $('#Modal').modal('show');
+        $('#Modal').data('bs.modal').options.backdrop = 'static';
+    })
+
+    function send() {
+        $('#new_paciente').submit()
+    }
+    $('#Modal').on('hidden.bs.modal', function () {
+        $('#senha').val("");
+        $('#btn_save').prop('disabled', false);
+    })
+</script>

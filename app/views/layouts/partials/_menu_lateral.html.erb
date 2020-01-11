@@ -1,0 +1,28 @@
+
+
+<div style="float:left" id="menu_vertical">
+  <div class="menu_vertical">
+
+    <button class="accordion" data-toggle="collapse" href="#cadastro" role="button" aria-expanded="false" aria-controls="cadastro">
+      <i class='fas fa-user'></i> Pacientes
+    </button>
+    <div class="menu-itens" id="cadastro">
+      <%= link_to "<button class='inner-accordion'><i class='fas fa-user'></i> Consultar Pacientes</button>".html_safe, pacientes_path%>
+      <%= link_to "<button class='inner-accordion'><i class='fas fa-user'></i> Cadastrar Paciente</button>".html_safe, new_paciente_path%>
+
+    </div>
+
+
+    <button class="accordion" data-toggle="collapse" href="#atendimento" role="button" aria-expanded="false" aria-controls="atendimento">
+      <i class="fas fa-walking"></i> Atendimento
+    </button>
+
+      <div class="menu-itens" id="atendimento">
+        <%= link_to "<button class='inner-accordion'><i class='fas fa-walking'></i> Senhas</button>".html_safe, new_presenca_path%>
+        <%= link_to "<button class='inner-accordion'><i class='fas fa-child'></i> Consultar Clinico/Espiritual</button>".html_safe, lists_normals_presencas_path%>
+        <%= link_to "<button class='inner-accordion'><i class='fas fa-child'></i> Consultar Prioridades</button>".html_safe, lists_priority_presencas_path%>
+      </div>
+
+  </div>
+</div>
+

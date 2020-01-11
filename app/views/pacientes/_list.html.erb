@@ -1,0 +1,56 @@
+
+
+
+<style>
+  .w-40{
+    width: 40px;
+  }
+</style>
+
+<div id="filterrific_results">
+  <table class="table table-bordered table-striped table-hover" id="tbl_results">
+    <thead>
+    <tr>
+      <th>Número</th>
+      <th>Nome</th>
+      <th>Nascimento</th>
+      <th>Sala</th>
+      <th>telefone</th>
+      <th style="width: 100px"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <% if @pacientes.blank? %>
+      <tr><td colspan="7">Não foram encontrado resultados.</td>
+      </tr>
+    <% end %>
+    <% @pacientes.each do |paciente| %>
+      <tr>
+        <td><%= paciente&.id %></td>
+        <td><%= paciente&.nome %></td>
+        <td><%= paciente.dt_nasc%></td>
+        <td><%= paciente&.sala&.nome %></td>
+        <td><%= paciente.telefone %></td>
+        <td >
+          <%= link_to paciente, title: "Visualizar",
+                      class: "btn btn-xs btn-success width-100"  do%>
+            <i class="fas fa-search-plus" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to  edit_paciente_path(paciente), title:'Editar', class: "btn btn-xs btn-primary" do%>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+          <%= link_to  paciente, method: :delete, data: { confirm: 'Você tem certeza??' }, class: "btn btn-xs btn-danger" do%>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div align="center">
+    <%= page_entries_info @pacientes, entry_name: 'resultado(s)' %>
+    <%= paginate @pacientes %>
+  </div>
+</div>

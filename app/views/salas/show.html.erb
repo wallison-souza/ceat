@@ -1,0 +1,12 @@
+<h1> Visuzalizar sala </h1>
+<fieldset disabled>
+  <%= render 'form', sala: @sala %>
+</fieldset>
+
+<div style="margin-top: 15px">
+  <div class="centered">
+    <%= link_to '<span class="glyphicon glyphicon-edit"></span> Editar'.html_safe, edit_sala_path(@sala), class: "btn btn-md btn-primary" %>
+  </div>
+  <%= link_to '<span class="fas fa-arrow-left"></span> Voltar'.html_safe, salas_path,class: "btn btn-md "  %>
+</div>
+

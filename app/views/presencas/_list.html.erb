@@ -1,0 +1,72 @@
+
+<style>
+  input[type=checkbox]
+  {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
+  }
+</style>
+
+  <table class="table table-bordered table-striped table-hover" id="tbl_results">
+    <thead>
+    <tr>
+      <th>Senha</th>
+      <th>Nome</th>
+      <th>Sala</th>
+      <th style="width: 100px"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <% if presencas.blank? %>
+      <tr><td colspan="7">Não foram encontrado resultados.</td>
+      </tr>
+    <% end %>
+    <% presencas.each do |presenca| %>
+      <tr>
+        <td><%= presenca.senha %></td>
+        <td><%= presenca&.paciente&.nome %></td>
+        <td><%= presenca&.paciente&.sala&.nome %></td>
+        <td class="centered">
+          <%if local_variables.include?(:action) && action == 'senhas'  %>
+            <%= button_tag  prid:presenca.id, class: "btn btn-xs btn-danger delete" do%>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          <%else %>
+            <%= check_box_tag 'presenca[check]',presenca.id, presenca.check%>
+          <%end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div align="center">
+    <%= page_entries_info presencas, entry_name: 'resultado(s)' %>
+    <%= paginate presencas %>
+  </div>
+
+<script>
+  $('input[type=checkbox]').click(function (e) {
+      let id = $(e.target).val();
+      let data= {'presenca':{}};
+      data['presenca']['check'] = $(e.target).is(":checked");
+      $.ajax({
+          url: `/presencas/${id}`, // server script from form action attribute or document URL (if action is empty or not specified)
+          type: 'PATCH', // method by form method or GET if not specified
+          dataType: 'JSON', // we expect res_type in response
+          data: data, // object with all form items
+          success: function (respond) {
+          },
+          error: function (respond) {
+              alert("Erro na requisição. Contate o suporlklkte!");
+          }
+      });
+  });
+
+</script>

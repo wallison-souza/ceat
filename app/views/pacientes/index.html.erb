@@ -1,0 +1,39 @@
+
+<div style="padding: 10px 5px 40px 5px">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="header-parameter" style="margin: 0 0 5px 0; font-size: 28px">
+        <i class="fas fa-user" aria-hidden="true"></i> Consultar Pacientes
+      </h1>
+    </div>
+  </div>
+
+  <div class="panel panel-primary" id="a">
+    <div class="panel-body">
+      <%= form_for_filterrific @filterrific do |f| %>
+        <div class="row " style="margin-bottom: 5px;">
+          <div class="col-md-10 " style="padding-right: 0px;">
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed form-control',
+                    placeholder:'Buscar pelo nome ou numero do paciente',
+                    style: 'text-transform: uppercase'
+                ) %>
+          </div>
+          <div class="col-md-2 " style="text-align: center">
+            <%= link_to new_paciente_path,class: "btn btn-success btn-md", style:'margin-bottom:2px' do %>
+              <span class="glyphicon glyphicon-plus"></span> Cadastrar Paciente
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <%= render partial: 'list' %>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+

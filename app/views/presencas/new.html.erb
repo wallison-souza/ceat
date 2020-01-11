@@ -1,0 +1,162 @@
+<h1>Distribuição de Senhas</h1>
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div style="padding: 10px 5px 40px 5px">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="header-parameter" style="margin: 0 0 5px 0; font-size: 28px;color:blue;">
+            <i class="fas fa-user" aria-hidden="true"></i> Pacientes
+          </h1>
+        </div>
+      </div>
+
+      <div class="panel panel-primary" id="a">
+        <div class="panel-body">
+          <%= form_for_filterrific @filterrific, url: pacientes_presencas_path do |f| %>
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed form-control',
+                    placeholder:'Buscar pelo nome ou numero do paciente',
+                    style: 'text-transform: uppercase'
+                ) %>
+          <% end %>
+          <div id="filterrific_results">
+            <%= render partial: 'list_pacientes', locals:{pacientes: @search} %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-md-6">
+    <div style="padding: 10px 5px 40px 5px">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="header-parameter" style="margin: 0 0 5px 0; font-size: 28px;color:blue;">
+            <i class="fas fa-user" aria-hidden="true"></i> Senhas
+          </h1>
+        </div>
+      </div>
+
+      <div class="panel panel-primary" id="a">
+        <div class="panel-body">
+
+          <div id="results_presenca">
+            <%= render partial: 'list', locals:{presencas: @presencas, action: 'senhas'} %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title centered" id="exampleModalLabel">Distribuição de Senha</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', presenca: @presenca %>
+      </div>
+      <div class="modal-footer">
+       <div class="row">
+         <div class="col-md-12 centered"><h4>Ultimas Senhas</h4></div>
+         <div class="col-md-12">
+           <table class="table table-borderless text-center">
+             <thead>
+                <tr>
+                  <th style="color:red;text-align: center;">Vermelha</th>
+                  <th style="color:blue;text-align: center;">Azul</th>
+                  <th style="color:green;text-align: center;">Verde</th>
+                </tr>
+             </thead>
+             <tbod>
+               <tr>
+                 <td>12</td>
+                 <td>12</td>
+                 <td>12</td>
+               </tr>
+             </tbod>
+           </table>
+         </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#filterrific_results .check').click(function(){
+
+    let name = $(this).closest('tr').find('.name').html();
+    let sala =  $(this).closest('tr').find('.sala').html();
+    let id =  $(this).closest('tr').find('.id').html();
+
+    $('#nome').val(name);
+    $('#presenca_paciente_id').val(id);
+    $('#presenca_senha').val('');
+    filter_list(sala);
+    $('#btn_save').prop('disabled', false);
+    $('#Modal').modal('show');
+  });
+
+
+  function filter_list(sala){
+    $( "#sala" )
+        .filter(function( ) {
+            return  $( this ).html() === sala;
+        }).attr('selected','selected');
+  }
+  
+  $('#new_presenca').submit( async function (evt) {
+      evt.preventDefault();
+      let response = await send_form_with_ajax(evt.target, 'html');
+      if (response === false) return;
+      $('#results_presenca').html(response);
+      $('#Modal').modal('hide');
+  })
+
+  $('body').on('click','.delete', function(e){
+
+      alertify.confirm('Deletar Presenca?', 'Você tem certeza?', function(){
+          let id = $(e.currentTarget).attr('prid');
+          $.ajax({
+              url: `/presencas/${id}`, // server script from form action attribute or document URL (if action is empty or not specified)
+              type: 'DELETE', // method by form method or GET if not specified
+              dataType: 'html', // we expect res_type in response
+              success: function (respond) {
+                  $('#results_presenca').html(respond);
+                  alertify.success('Presenca apagada com sucesso!')
+              },
+              error: function (respond) {
+                  $('#results_presenca').html(respond);
+                  alertify.error("Erro na requisição. Contate o suporte!");
+              }
+          });
+      },function(){});
+
+  });
+
+
+  $(document).ready(function () {
+      $('#tbl_results').DataTable({
+          "ordering": false // false to disable sorting (or any other option)
+      });
+      $('.tbl_results').addClass('bs-select');
+  });
+
+</script>

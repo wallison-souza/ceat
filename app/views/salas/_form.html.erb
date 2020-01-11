@@ -1,0 +1,44 @@
+<%= form_for(sala) do |f| %>
+  <% if sala.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sala.errors.count, "error") %> proibiu de ser salvo::</h2>
+
+      <ul>
+      <% sala.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label :tipo, 'Tipo', class:'label-ceat' %>
+      <%= f.text_field :tipo, class:'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :nome, 'Nome', class:'label-ceat' %>
+      <%= f.text_field :nome, class:'form-control' %>
+    </div>
+
+
+    <div class="col-md-3">
+      <%= f.label :lista, 'Lista Pertecente', class:'label-ceat' %>
+      <%= f.select :lista, Sala.lista.keys, {include_blank: "SELECIONE UMA LISTA"}, class:'form-control' %>
+    </div>
+
+    <div class="col-md-2">
+      <%= f.check_box :prioridade %>
+      <%= f.label :prioridade, 'Prioridade?',  style: "margin:25px 0 0 5px; font-size: 0.9em; line-heght:normal" %>
+    </div>
+  </div>
+
+  <%unless params[:action] =="show" %>
+    <div class="row centered">
+      <div class="col-md-12">
+        <%= f.submit sala.new_record? ? 'Salvar' : 'Atualizar', class:'btn btn-success'%>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>

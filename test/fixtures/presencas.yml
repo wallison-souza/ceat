@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente: one
+  senha: 1
+
+two:
+  paciente: two
+  senha: 1

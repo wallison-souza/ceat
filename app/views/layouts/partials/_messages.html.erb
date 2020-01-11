@@ -1,0 +1,14 @@
+<!--Se tem alguma mensagem a ser exibida, carrega o div -->
+<% if flash.count > 0 %>
+  <div class="row" style="margin-top: 26px;">
+    <div class="col-md-12">
+      <% flash.each do |key, value| %>
+        <% key == 'alert' ? key = 'warning' : '' %>
+        <div class="alert alert-<%= "#{key}" %>">
+          <%= value.try(:html_safe) %>
+          <a href="#" class="close" data-dismiss="alert"> &#215;</a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

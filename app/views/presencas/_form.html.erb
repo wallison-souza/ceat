@@ -1,0 +1,38 @@
+<%= form_for(presenca) do |f| %>
+  <% if presenca.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(presenca.errors.count, "error") %> prohibited this presenca from being saved:</h2>
+
+      <ul>
+      <% presenca.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :paciente_id %>
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.label 'Nome', :nome, class:'label-ceat' %>
+      <%= text_field_tag :nome, '',class:'form-control', disabled:true %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label 'Senha', :senha, class:'label-ceat' %>
+      <%= f.number_field :senha, class:'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label 'Sala', :sala, class:'label-ceat' %>
+      <%= select_tag :sala,options_from_collection_for_select(Sala.all,:id, :nome), class:'form-control' %>
+    </div>
+    <div class="col-md-2" style="margin-top:17px;">
+      <%= f.submit("OK", class:'btn btn-success', id:'btn_save') %>
+    </div>
+  </div>
+
+
+<% end %>

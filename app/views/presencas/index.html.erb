@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Presencas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Senha</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presencas.each do |presenca| %>
+      <tr>
+        <td><%= presenca.paciente %></td>
+        <td><%= presenca.senha %></td>
+        <td><%= link_to 'Show', presenca %></td>
+        <td><%= link_to 'Edit', edit_presenca_path(presenca) %></td>
+        <td><%= link_to 'Destroy', presenca, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Presenca', new_presenca_path %>

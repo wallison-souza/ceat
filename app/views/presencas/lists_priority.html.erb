@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-6">
+    <div style="padding: 10px 5px 40px 5px">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="header-parameter" style="margin: 0 0 5px 0; font-size: 28px;color:green;">
+            <i class="fas fa-user" aria-hidden="true"></i> Lista de Prioridades
+          </h1>
+        </div>
+      </div>
+
+      <div class="panel panel-primary" id="a">
+        <div class="panel-body">
+          <%= form_for_filterrific @filterrific_priority, url: list_priority_presencas_path do |f| %>
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed form-control',
+                    placeholder:'Buscar pelo nome do paciente',
+                    style: 'text-transform: uppercase'
+                ) %>
+          <% end %>
+          <div id="filterrific_results_priority">
+            <%= render partial: 'list', locals:{presencas: @priority} %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-md-6">
+    <div style="padding: 10px 5px 40px 5px">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="header-parameter" style="margin: 0 0 5px 0; font-size: 28px; color:orange;">
+            <i class="fas fa-user" aria-hidden="true"></i> Lista de 1º Vez
+          </h1>
+        </div>
+      </div>
+
+      <div class="panel panel-primary" id="a">
+        <div class="panel-body">
+          <%= form_for_filterrific @filterrific_first,url: list_first_time_presencas_path do |f| %>
+            <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed form-control',
+                    placeholder:'Buscar pelo nome ou numero do paciente',
+                    style: 'text-transform: uppercase'
+                ) %>
+          <% end %>
+          <div id="filterrific_results_first">
+            <%= render partial: 'list', locals:{presencas: @first_time} %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
