@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70daaec1-a861-44bc-a2c3-83d49b54fbe9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20191230202255_create_pacientes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/23331230202255_create_pacientes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20191231031613_create_presencas.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/24441231031613_create_presencas.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20200103225501_add_sexo_to_paciente.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20200107174324_add_new_registry_to_presenca.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20200110014026_add_check_to_presenca.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/23331230202255_create_pacientes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/25551230202255_create_pacientes.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -343,22 +336,21 @@
       <workItem from="1578088005251" duration="21189000" />
       <workItem from="1578418174071" duration="22322000" />
       <workItem from="1578611892122" duration="16635000" />
-      <workItem from="1578698430170" duration="4575000" />
+      <workItem from="1578698430170" duration="5004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94297000" />
+    <option name="totallyTimeSpent" value="94726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26068377" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26068377" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32819384" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32819384" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -707,7 +699,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/23331230202255_create_pacientes.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/25551230202255_create_pacientes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
