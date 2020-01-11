@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200110014026) do
+ActiveRecord::Schema.define(version: 29990212172415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 20200110014026) do
     t.string   "cep"
     t.string   "celular"
     t.string   "telefone"
+    t.integer  "sexo"
     t.integer  "sala_id"
     t.string   "profissao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "sexo"
     t.index ["cidade_id"], name: "index_pacientes_on_cidade_id", using: :btree
     t.index ["sala_id"], name: "index_pacientes_on_sala_id", using: :btree
   end
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 20200110014026) do
   create_table "presencas", force: :cascade do |t|
     t.integer  "paciente_id"
     t.integer  "senha"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.boolean  "new_registry"
     t.boolean  "check"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["paciente_id"], name: "index_presencas_on_paciente_id", using: :btree
   end
 
@@ -82,5 +82,6 @@ ActiveRecord::Schema.define(version: 20200110014026) do
 
   add_foreign_key "cidades", "estados"
   add_foreign_key "pacientes", "cidades"
+  add_foreign_key "pacientes", "salas"
   add_foreign_key "presencas", "pacientes"
 end

@@ -10,6 +10,7 @@ class CreatePacientes < ActiveRecord::Migration[5.0]
       t.string :cep
       t.string :celular
       t.string :telefone
+      t.integer :sexo
       t.references :sala, foreign_key: true
       t.string :profissao
 
