@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70daaec1-a861-44bc-a2c3-83d49b54fbe9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/database.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20200103222415_create_salas.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/29900103222415_create_salas.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -61,7 +61,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20090212172415_popula_estados_cidades.rb">
+        <entry file="file://$PROJECT_DIR$/db/migrate/29990212172415_popula_estados_cidades.rb">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -345,12 +345,12 @@
       <workItem from="1578088005251" duration="21189000" />
       <workItem from="1578418174071" duration="22322000" />
       <workItem from="1578611892122" duration="16635000" />
-      <workItem from="1578698430170" duration="3604000" />
+      <workItem from="1578698430170" duration="3847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93326000" />
+    <option name="totallyTimeSpent" value="93569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
@@ -360,7 +360,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32819384" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -716,7 +716,7 @@
     <entry file="file://$PROJECT_DIR$/db/migrate/20191230201751_create_estados.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20090212172415_popula_estados_cidades.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/29990212172415_popula_estados_cidades.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.yml">
