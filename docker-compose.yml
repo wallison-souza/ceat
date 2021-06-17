@@ -1,0 +1,66 @@
+version: "3.8"
+services:
+  database:
+    # Use the postgres 11.5 base image for this container.
+    image: postgres:11.5
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+    volumes:
+      - type: volume
+        source: postgres-data
+        target: /var/lib/postgresql/data
+        consistency: delegated
+
+    ports:
+      - target: 5432
+        published: 5532
+        protocol: tcp
+        mode: host
+
+    networks:
+      - backend
+
+  app:
+    build: .
+
+    volumes:
+      - type: volume
+        source: bundle-cache
+        target: /usr/local/bundle
+      - type: bind
+        source: .
+        target: /usr/local/src/app
+        consistency: delegated
+
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: host
+
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+    networks:
+      - backend
+
+    environment:
+      RAILS_ENV: development
+      DATABASE_NAME: ceat
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: database
+      BINDING: 0.0.0.0
+      PORT: 3000
+
+    depends_on:
+      - database
+
+
+volumes:
+  postgres-data:
+  bundle-cache:
+
+networks:
+  backend:
