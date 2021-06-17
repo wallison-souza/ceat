@@ -17,15 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV.fetch('DATABASE_PORT', 5432) %>
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  username: 'wallison'
-  password: 'Goiaba06'
-  database: ceat
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  database: <%= ENV.fetch('DATABASE_NAME', 'development') %>
+  username: <%= ENV.fetch('DATABASE_USERNAME', 'postgres') %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +82,6 @@ development:
 #
 production:
   <<: *default
-  username: 'wallison'
-  password: 'Goiaba06'
-  database: ceat
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
